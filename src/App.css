@@ -1,0 +1,27 @@
+.App {
+  min-height: 100vh;
+  padding-top: 60px; /* Height of navbar */
+  transition: all 0.3s ease;
+}
+
+.App.light {
+  background-color: var(--background-light);
+  color: var(--text-light);
+}
+
+.App.dark {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}
