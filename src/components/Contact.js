@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 const Contact = () => {
   const theme = useSelector((state) => state.portfolio.theme);
+  const form = useRef();
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    emailjs.sendForm(
+      'service_xxxxxxx', // Replace with your service ID
+      'template_xxxxxxx', // Replace with your template ID
+      form.current,
+      'xxxxxxxxxxxxxx' // Replace with your public key
+    )
+    .then((result) => {
+      console.log('SUCCESS!', result.text);
+      setStatus('success');
+      form.current.reset();
+      setTimeout(() => setStatus(''), 5000);
+    })
+    .catch((error) => {
+      console.error('FAILED...', error.text);
+      setStatus('error');
+      setTimeout(() => setStatus(''), 5000);
+    });
+  };
 
   return (
     <motion.div 
@@ -49,6 +75,8 @@ const Contact = () => {
           </motion.div>
 
           <motion.form 
+            ref={form}
+            onSubmit={handleSubmit}
             className="contact-form"
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -56,12 +84,12 @@ const Contact = () => {
           >
             <div className="form-group">
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="from_name" required />
             </div>
             
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="from_email" required />
             </div>
             
             <div className="form-group">
@@ -69,7 +97,20 @@ const Contact = () => {
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
             
-            <button type="submit" className="submit-btn">Send Message</button>
+            <button type="submit" className="submit-btn" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending...' : 'Send Message'}
+            </button>
+
+            {status === 'success' && (
+              <div className="status-message success">
+                Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="status-message error">
+                Oops! Something went wrong. Please try again later.
+              </div>
+            )}
           </motion.form>
         </div>
       </div>
