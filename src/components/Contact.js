@@ -13,12 +13,12 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('sending');
-
+console.log(form.current)
     emailjs.sendForm(
-      'service_xxxxxxx', // Replace with your service ID
-      'template_xxxxxxx', // Replace with your template ID
+      'service_nqtgw3l', 
+      'template_i6rqcqb', 
       form.current,
-      'xxxxxxxxxxxxxx' // Replace with your public key
+      'tiQflDSNSsjnAgjZw' 
     )
     .then((result) => {
       console.log('SUCCESS!', result.text);
