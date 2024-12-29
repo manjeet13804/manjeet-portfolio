@@ -46,6 +46,50 @@
   color: var(--secondary-color);
 }
 
+.certificates {
+  margin-top: 2rem;
+}
+
+.certificates h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.certificates-section {
+  background: rgba(0, 123, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.certificates-section h4 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.certificate-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.certificate-items a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.certificate-items a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background: var(--accent-color);
+}
+
 @media (max-width: 768px) {
   .about {
     padding: 2rem 0;
