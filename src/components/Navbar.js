@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, setActiveSection } from '../redux/portfolioSlice';
@@ -8,9 +8,11 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.portfolio.theme);
   const activeSection = useSelector((state) => state.portfolio.activeSection);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavClick = (section) => {
     dispatch(setActiveSection(section));
+    setIsMenuOpen(false);
   };
 
   return (
@@ -18,7 +20,18 @@ const Navbar = () => {
       <div className="navbar-brand">
         <Link to="/">Manjeet Panghal</Link>
       </div>
-      <div className="navbar-links">
+      <button 
+        className="mobile-menu-btn"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <div className={`hamburger ${isMenuOpen ? 'open' : ''}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </button>
+      <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         <Link 
           to="/" 
           className={activeSection === 'home' ? 'active' : ''}
