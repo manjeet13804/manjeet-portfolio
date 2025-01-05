@@ -12,11 +12,20 @@ const ContactContainer = styled(motion.div)`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => `${theme.spacing[16]} ${theme.spacing[4]}`};
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => `${theme.spacing[12]} ${theme.spacing[3]}`};
+  }
 `;
 
 const Content = styled.div`
   max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
+  padding: 0 ${({ theme }) => theme.spacing[4]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: 0 ${({ theme }) => theme.spacing[2]};
+  }
 `;
 
 const SectionTitle = styled(motion.h2)`
@@ -27,6 +36,10 @@ const SectionTitle = styled(motion.h2)`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.fontSizes['3xl']};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes['2xl']};
   }
 `;
 
@@ -51,8 +64,19 @@ const ContactGrid = styled.div`
   gap: ${({ theme }) => theme.spacing[8]};
   margin-top: ${({ theme }) => theme.spacing[8]};
 
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    grid-template-columns: 1fr 1.5fr;
+    gap: ${({ theme }) => theme.spacing[6]};
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.spacing[8]};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    margin-top: ${({ theme }) => theme.spacing[6]};
+    gap: ${({ theme }) => theme.spacing[6]};
   }
 `;
 
@@ -60,6 +84,10 @@ const ContactInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[6]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    gap: ${({ theme }) => theme.spacing[4]};
+  }
 `;
 
 const InfoItem = styled.div`
@@ -67,6 +95,28 @@ const InfoItem = styled.div`
   align-items: center;
   gap: ${({ theme }) => theme.spacing[4]};
   color: ${({ theme }) => theme.colors.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    gap: ${({ theme }) => theme.spacing[3]};
+  }
+
+  h4 {
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    margin-bottom: ${({ theme }) => theme.spacing[1]};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      font-size: ${({ theme }) => theme.fontSizes.md};
+    }
+  }
+
+  p {
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    color: ${({ theme }) => theme.colors.textLight};
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      font-size: ${({ theme }) => theme.fontSizes.sm};
+    }
+  }
 `;
 
 const InfoIcon = styled.div`
@@ -89,6 +139,15 @@ const ContactForm = styled(motion.form)`
   padding: ${({ theme }) => theme.spacing[8]};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   box-shadow: ${({ theme }) => theme.shadows.lg};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.spacing[6]};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacing[4]};
+    gap: ${({ theme }) => theme.spacing[3]};
+  }
 `;
 
 const InputGroup = styled.div`
@@ -107,7 +166,13 @@ const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.gray[300]};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   font-size: ${({ theme }) => theme.fontSizes.md};
+  width: 100%;
   transition: ${({ theme }) => theme.transitions.default};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacing[2]};
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
 
   &:focus {
     outline: none;
@@ -122,8 +187,15 @@ const TextArea = styled.textarea`
   border-radius: ${({ theme }) => theme.borderRadius.md};
   font-size: ${({ theme }) => theme.fontSizes.md};
   min-height: 150px;
+  width: 100%;
   resize: vertical;
   transition: ${({ theme }) => theme.transitions.default};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacing[2]};
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+    min-height: 120px;
+  }
 
   &:focus {
     outline: none;
@@ -167,12 +239,21 @@ const SocialLinks = styled.div`
   gap: ${({ theme }) => theme.spacing[4]};
   margin-top: ${({ theme }) => theme.spacing[6]};
   justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    gap: ${({ theme }) => theme.spacing[3]};
+    margin-top: ${({ theme }) => theme.spacing[4]};
+  }
 `;
 
 const SocialIcon = styled(motion.a)`
   color: ${({ theme }) => theme.colors.primary};
   font-size: ${({ theme }) => theme.fontSizes['2xl']};
   transition: ${({ theme }) => theme.transitions.default};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+  }
 
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
