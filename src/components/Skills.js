@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaReact, FaNodeJs, FaGitAlt, FaDocker, FaHtml5, FaCss3Alt, FaJs, FaDatabase, FaCode, FaJava, FaTools, FaBootstrap } from 'react-icons/fa';
-import { SiRedux, SiMongodb, SiPostgresql, SiExpress, SiTypescript, SiTailwindcss, SiCplusplus, SiJquery, SiVisualstudiocode, SiSublimetext, SiPostman, SiNetlify, SiEclipseide } from 'react-icons/si';
+import { FaReact, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt, FaJs, FaDatabase, FaCode, FaJava, FaTools, FaBootstrap } from 'react-icons/fa';
+import { SiCplusplus, SiJquery, SiVisualstudiocode, SiSublimetext, SiPostman, SiNetlify, SiEclipseide, SiMongodb, SiExpress } from 'react-icons/si';
 
 const SkillsContainer = styled.section`
   min-height: 100vh;

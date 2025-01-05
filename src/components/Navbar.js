@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 
-const NavContainer = styled(motion.nav)`
-  padding: 1rem 2rem;
-  background: ${({ scrolled }) => scrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent'};
-  backdrop-filter: ${({ scrolled }) => scrolled ? 'blur(10px)' : 'none'};
+const NavbarContainer = styled(motion.nav)`
   position: fixed;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  transition: all 0.3s ease-in-out;
+  background: ${({ scrolled, theme }) => 
+    scrolled ? theme.colors.white : 'transparent'};
+  box-shadow: ${({ scrolled, theme }) => 
+    scrolled ? theme.shadows.md : 'none'};
+  transition: ${({ theme }) => theme.transitions.default};
+  padding: ${({ theme }) => `${theme.spacing[4]} ${theme.spacing[6]}`};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => `${theme.spacing[3]} ${theme.spacing[4]}`};
+  }
 `;
 
 const NavContent = styled.div`
-  max-width: 1400px;
+  max-width: ${({ theme }) => theme.breakpoints.xl};
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -23,60 +31,39 @@ const NavContent = styled.div`
 `;
 
 const Logo = styled(Link)`
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
-  font-family: ${({ theme }) => theme.fonts.heading};
+  z-index: 1001;
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
   align-items: center;
+  gap: ${({ theme }) => theme.spacing[8]};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
 `;
 
 const NavLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme, active }) => 
+    active ? theme.colors.primary : theme.colors.text};
   text-decoration: none;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
   position: relative;
-  
+  transition: ${({ theme }) => theme.transitions.default};
+
   &:after {
     content: '';
     position: absolute;
-    width: 0;
+    width: ${({ active }) => (active ? '100%' : '0')};
     height: 2px;
     bottom: -4px;
     left: 0;
-    background-color: ${({ theme }) => theme.colors.accent};
-    transition: width 0.3s ease-in-out;
-  }
-
-  &:hover:after, &.active:after {
-    width: 100%;
-  }
-`;
-
-const ResumeButton = styled(motion.a)`
-  color: ${({ theme }) => theme.colors.text};
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  margin-left: 20px;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: ${({ theme }) => theme.colors.accent};
+    background-color: ${({ theme }) => theme.colors.primary};
     transition: width 0.3s ease-in-out;
   }
 
@@ -89,11 +76,12 @@ const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fontSizes['2xl']};
   cursor: pointer;
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.colors.primary};
+  z-index: 1001;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
   }
 `;
@@ -103,39 +91,50 @@ const MobileMenu = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
-  background: ${({ theme }) => theme.colors.background};
-  padding: 2rem;
-  
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
+  right: 0;
+  bottom: 0;
+  background: ${({ theme }) => theme.colors.white};
+  padding: ${({ theme }) => `${theme.spacing[20]} ${theme.spacing[4]}`};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing[6]};
+  z-index: 1000;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
   }
 `;
 
-const MobileNavLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.text};
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
+const MobileNavLink = styled(NavLink)`
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  text-align: center;
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing[3]};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
   
-  &:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: ${({ theme }) => theme.colors.accent};
-    transition: width 0.3s ease-in-out;
+  &:hover {
+    background: ${({ theme }) => theme.colors.gray[100]};
+  }
+`;
+
+const ResumeButton = styled(motion.a)`
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[6]}`};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  text-decoration: none;
+  transition: ${({ theme }) => theme.transitions.default};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.accent};
   }
 
-  &:hover:after, &.active:after {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 100%;
+    text-align: center;
+    margin-top: ${({ theme }) => theme.spacing[4]};
   }
 `;
 
@@ -153,58 +152,83 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isMobileMenuOpen]);
+
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/projects', label: 'Projects' },
     { path: '/experience', label: 'Experience' },
     { path: '/skills', label: 'Skills' },
-    { path: '/contact', label: 'Contact' },  
+    { path: '/contact', label: 'Contact' },
   ];
 
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: "-100%",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
-    <>
-      <NavContainer
-        scrolled={isScrolled}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <NavContent>
-          <Logo to="/">Portfolio</Logo>
-          <NavLinks>
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                active={location.pathname === item.path}
-              >
-                {item.label}
-              </NavLink>
-            ))}
-            <ResumeButton
-              href="/Manjeet_resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              download
+    <NavbarContainer
+      scrolled={isScrolled}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <NavContent>
+        <Logo to="/">Manjeet</Logo>
+        <NavLinks>
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              active={location.pathname === item.path}
             >
-              Resume
-            </ResumeButton>
-          </NavLinks>
-          <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <HiX /> : <HiMenu />}
-          </MobileMenuButton>
-        </NavContent>
-      </NavContainer>
+              {item.label}
+            </NavLink>
+          ))}
+          <ResumeButton
+            href="/Manjeet_resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            download
+          >
+            Resume
+          </ResumeButton>
+        </NavLinks>
+        <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+          {isMobileMenuOpen ? <HiX /> : <HiMenu />}
+        </MobileMenuButton>
+      </NavContent>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
           <MobileMenu
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
           >
             {navItems.map((item) => (
               <MobileNavLink
@@ -217,7 +241,7 @@ const Navbar = () => {
               </MobileNavLink>
             ))}
             <ResumeButton
-              href="/components/Manjeet_resume.pdf"
+              href="/Manjeet_resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -228,7 +252,7 @@ const Navbar = () => {
           </MobileMenu>
         )}
       </AnimatePresence>
-    </>
+    </NavbarContainer>
   );
 };
 

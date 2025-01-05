@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const ExperienceContainer = styled.section`
   min-height: 100vh;
