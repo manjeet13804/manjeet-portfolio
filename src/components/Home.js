@@ -20,10 +20,16 @@ const Content = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  padding: 0 1rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 0 0.5rem;
   }
 `;
 
@@ -37,10 +43,29 @@ const ImageContent = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 1rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     order: 1;
+    padding: 0.5rem;
+    max-width: 350px;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-width: 300px;
+  }
+`;
+
+const ProfileImage = styled(motion.img)`
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: ${({ theme }) => theme.shadows.large};
 `;
 
 const Title = styled(motion.h1)`
@@ -103,19 +128,6 @@ const SocialIcon = styled(motion.a)`
 
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
-  }
-`;
-
-const ProfileImage = styled(motion.img)`
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: ${({ theme }) => theme.shadows.large};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 300px;
-    height: 300px;
   }
 `;
 
