@@ -117,6 +117,16 @@ const InfoItem = styled.div`
       font-size: ${({ theme }) => theme.fontSizes.sm};
     }
   }
+
+  a {
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    color: ${({ theme }) => theme.colors.textLight};
+    text-decoration: none;
+
+    @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+      font-size: ${({ theme }) => theme.fontSizes.sm};
+    }
+  }
 `;
 
 const InfoIcon = styled.div`
@@ -331,6 +341,24 @@ const Contact = () => {
               <div>
                 <h4>Location</h4>
                 <p>Jhajjar, Haryana</p>
+              </div>
+            </InfoItem>
+            <InfoItem>
+              <InfoIcon>
+                <FaGithub />
+              </InfoIcon>
+              <div>
+                <h4>GitHub</h4>
+                <a href="https://www.github.com/manjeet13804" target="_blank" rel="noopener noreferrer">github.com/manjeet13804</a>
+              </div>
+            </InfoItem>
+            <InfoItem>
+              <InfoIcon>
+                <FaLinkedin />
+              </InfoIcon>
+              <div>
+                <h4>LinkedIn</h4>
+                <a href="https://www.linkedin.com/in/manjeet-panghal" target="_blank" rel="noopener noreferrer">linkedin.com/in/manjeet-panghal</a>
               </div>
             </InfoItem>
           </ContactInfo>

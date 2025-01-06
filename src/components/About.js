@@ -234,6 +234,20 @@ const StatItem = styled(motion.div)`
   }
 `;
 
+const StatNumber = styled.h4`
+  font-size: ${({ theme }) => theme.fontSizes['3xl']};
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: ${({ theme }) => theme.spacing[2]};
+  font-weight: bold;
+`;
+
+const StatLabel = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  color: ${({ theme }) => theme.colors.textLight};
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
+
 const ButtonGroup = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
@@ -346,35 +360,37 @@ const EducationList = styled.div`
   margin-top: ${({ theme }) => theme.spacing[6]};
 `;
 
-const EducationCard = styled(motion.div)`
+const EducationItem = styled(motion.div)`
   background: ${({ theme }) => `${theme.colors.background}40`};
   padding: ${({ theme }) => theme.spacing[6]};
   border-radius: ${({ theme }) => theme.borderRadius.lg};
   border: 1px solid ${({ theme }) => `${theme.colors.primary}15`};
   
-  h4 {
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    color: ${({ theme }) => theme.colors.text};
-    margin-bottom: ${({ theme }) => theme.spacing[2]};
-  }
+  .edu-content {
+    h4 {
+      font-size: ${({ theme }) => theme.fontSizes.xl};
+      color: ${({ theme }) => theme.colors.text};
+      margin-bottom: ${({ theme }) => theme.spacing[2]};
+    }
 
-  p {
-    color: ${({ theme }) => theme.colors.textLight};
-    margin-bottom: ${({ theme }) => theme.spacing[2]};
-    font-size: ${({ theme }) => theme.fontSizes.md};
-  }
+    p {
+      color: ${({ theme }) => theme.colors.textLight};
+      margin-bottom: ${({ theme }) => theme.spacing[2]};
+      font-size: ${({ theme }) => theme.fontSizes.md};
+    }
 
-  a {
-    display: inline-flex;
-    align-items: center;
-    color: ${({ theme }) => theme.colors.primary};
-    text-decoration: none;
-    font-weight: ${({ theme }) => theme.fontWeights.medium};
-    margin-top: ${({ theme }) => theme.spacing[2]};
-    transition: color 0.3s ease;
-    
-    &:hover {
-      color: ${({ theme }) => theme.colors.accent};
+    a {
+      display: inline-flex;
+      align-items: center;
+      color: ${({ theme }) => theme.colors.primary};
+      text-decoration: none;
+      font-weight: ${({ theme }) => theme.fontWeights.medium};
+      margin-top: ${({ theme }) => theme.spacing[2]};
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: ${({ theme }) => theme.colors.accent};
+      }
     }
   }
 `;
@@ -432,12 +448,20 @@ const About = () => {
 
           <Stats>
             <StatItem variants={itemVariants}>
-              <h4>1+</h4>
-              <p>Years Experience</p>
+              <StatNumber>1+</StatNumber>
+              <StatLabel>Years Experience</StatLabel>
             </StatItem>
             <StatItem variants={itemVariants}>
-              <h4>60+</h4>
-              <p>Projects Completed</p>
+              <StatNumber>60+</StatNumber>
+              <StatLabel>Projects Completed</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>800+</StatNumber>
+              <StatLabel>Java & Javascript DSA Problems Solved</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>Top Performer</StatNumber>
+              <StatLabel>12th & Coding Ninjas Full Stack Course</StatLabel>
             </StatItem>
           </Stats>
 
@@ -492,29 +516,44 @@ const About = () => {
               Education
             </EducationTitle>
             <EducationList>
-              <EducationCard
+              <EducationItem
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4>Bachelor in Science</h4>
-                <p>Maharishi Dayanand University</p>
-                <p>2015 - 2019</p>
-                <a 
-                  href="https://drive.google.com/file/d/1q6KnAS7Rut5iiYnUTNqE-JMuDctOQeEY/view"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Degree →
-                </a>
-              </EducationCard>
-              <EducationCard
+                <div className="edu-content">
+                  <h4>Bachelor in Science</h4>
+                  <p>Maharishi Dayanand University</p>
+                  <p>2015 - 2019</p>
+                  <a 
+                    href="https://drive.google.com/file/d/1q6KnAS7Rut5iiYnUTNqE-JMuDctOQeEY/view"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Degree →
+                  </a>
+                </div>
+              </EducationItem>
+              <EducationItem
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
               >
-                <h4>Senior Secondary (12th)</h4>
-                <p>Sainink School Kunjpura Karnal</p>
-                <p>2015</p>
-              </EducationCard>
+                <div className="edu-content">
+                  <h4>Senior Secondary (12th)</h4>
+                  <p>Sainink School Kunjpura Karnal</p>
+                  <p>2015</p>
+                </div>
+              </EducationItem>
+              <EducationItem
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="edu-content">
+                  <h4>Advanced Diploma in Computer Science</h4>
+                  <p>Paymitra Training Institute</p>
+                  <p>June 2018 - June 2020</p>
+                  <a href="https://drive.google.com/file/d/1LbuPqO2WkHDHJAjj-MvD86XOQIF-1MfI/view?usp=sharing" target="_blank" rel="noopener noreferrer">View Diploma</a>
+                </div>
+              </EducationItem>
             </EducationList>
           </EducationSection>
 
