@@ -22,7 +22,7 @@ const Content = styled.div`
   align-items: center;
   padding: 0 1rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
@@ -34,7 +34,7 @@ const Content = styled.div`
 `;
 
 const TextContent = styled(motion.div)`
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     order: 2;
   }
 `;
@@ -48,14 +48,11 @@ const ImageContent = styled(motion.div)`
   margin: 0 auto;
   padding: 1rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     order: 1;
     padding: 0.5rem;
-    max-width: 350px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    max-width: 300px;
+    max-width: 250px;
+    margin-top: 2rem;
   }
 `;
 
@@ -66,6 +63,12 @@ const ProfileImage = styled(motion.img)`
   border-radius: 50%;
   object-fit: cover;
   box-shadow: ${({ theme }) => theme.shadows.large};
+  border: 4px solid ${({ theme }) => theme.colors.primary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 200px;
+    height: 200px;
+  }
 `;
 
 const Title = styled(motion.h1)`

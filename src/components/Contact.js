@@ -322,7 +322,9 @@ const Contact = () => {
               </InfoIcon>
               <div>
                 <h4>Email</h4>
-                <p>manjeet13804@gmail.com</p>
+                <a href="mailto:manjeet13804@gmail.com" target="_blank" rel="noopener noreferrer">
+                  manjeet13804@gmail.com
+                </a>
               </div>
             </InfoItem>
             <InfoItem>
@@ -331,7 +333,9 @@ const Contact = () => {
               </InfoIcon>
               <div>
                 <h4>Phone</h4>
-                <p>9053281670</p>
+                <a href="tel:+919053281670" target="_blank" rel="noopener noreferrer">
+                  9053281670
+                </a>
               </div>
             </InfoItem>
             <InfoItem>

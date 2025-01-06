@@ -39,7 +39,7 @@ const Content = styled.div`
   display: grid;
   grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
   gap: ${({ theme }) => theme.spacing[8]};
-  align-items: flex-start;
+  align-items: start;
   position: relative;
   z-index: 1;
   transform-style: preserve-3d;
@@ -61,13 +61,13 @@ const InfoSection = styled(motion.div)`
   gap: ${({ theme }) => theme.spacing[6]};
   transform-style: preserve-3d;
   max-width: 600px;
-  margin: 0 auto;
   width: 100%;
   padding: ${({ theme }) => theme.spacing[6]};
   background: ${({ theme }) => `${theme.colors.card}80`};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   backdrop-filter: blur(8px);
   box-shadow: ${({ theme }) => theme.shadows.lg};
+  margin-top: 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.spacing[4]};
@@ -79,8 +79,8 @@ const LeftColumn = styled(motion.div)`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[8]};
   max-width: 600px;
-  margin: 0 auto;
   width: 100%;
+  margin: 0;
 `;
 
 const CertificationsSection = styled(motion.div)`
@@ -316,7 +316,9 @@ const Button = styled(motion.a)`
 const SocialLinks = styled(motion.div)`
   display: flex;
   gap: ${({ theme }) => theme.spacing[4]};
-  margin-top: ${({ theme }) => theme.spacing[6]};
+  justify-content: center;
+  margin-top: ${({ theme }) => theme.spacing[8]};
+  width: 100%;
 `;
 
 const SocialIcon = styled(motion.a)`
@@ -468,10 +470,21 @@ const About = () => {
               <StatLabel>Java & Javascript DSA Problems Solved</StatLabel>
             </StatItem>
             <StatItem variants={itemVariants}>
-              <StatNumber>Top Performer</StatNumber>
-              <StatLabel>12th & Coding Ninjas Full Stack Course</StatLabel>
+              <StatNumber>1200+</StatNumber>
+              <StatLabel>critical PC, laptop, and printer,router, Switch issues Resolved</StatLabel>
             </StatItem>
-           
+            <StatItem variants={itemVariants}>
+              <StatNumber>50+</StatNumber>
+              <StatLabel> students Taught essential skills, MS Office ,fundamentals, HTML, CSS</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>600+</StatNumber>
+              <StatLabel>fronted and backend problems Mentored at Coding Ninjas</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>Top</StatNumber>
+              <StatLabel>Performer at 12th & Coding Ninjas Full Stack Course</StatLabel>
+            </StatItem>
           </Stats>
 
           <ButtonGroup variants={itemVariants}>
@@ -495,25 +508,6 @@ const About = () => {
               Let's Talk
             </Button>
           </ButtonGroup>
-
-          <SocialLinks variants={itemVariants}>
-            <SocialIcon
-              href="https://github.com/manjeet13804"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-            >
-              <FaGithub />
-            </SocialIcon>
-            <SocialIcon
-              href="https://linkedin.com/in/manjeet-panghal"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1 }}
-            >
-              <FaLinkedin />
-            </SocialIcon>
-          </SocialLinks>
         </InfoSection>
 
         <LeftColumn variants={itemVariants}>
@@ -664,6 +658,36 @@ const About = () => {
                   <p>Coding Ninjas</p>
                 </div>
               </CertificationItem>
+              <CertificationItem
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                as="a"
+                href="https://certificate.codingninjas.com/view/bc7bcccb759ac494"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="cert-icon">💻</div>
+                <div className="cert-content">
+                  <h4>Operating Systems</h4>
+                  <p>Coding Ninjas</p>
+                </div>
+              </CertificationItem>
+              <CertificationItem
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                as="a"
+                href="https://certificate.codingninjas.com/view/4661e7773a12402b"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="cert-icon">🎯</div>
+                <div className="cert-content">
+                  <h4> Aptitude</h4>
+                  <p>Coding Ninjas</p>
+                </div>
+              </CertificationItem>
 
               <CertificationItem
                 variants={itemVariants}
@@ -700,6 +724,25 @@ const About = () => {
           </CertificationsSection>
         </LeftColumn>
       </Content>
+      
+      <SocialLinks variants={itemVariants}>
+        <SocialIcon
+          href="https://github.com/manjeet13804"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.1 }}
+        >
+          <FaGithub />
+        </SocialIcon>
+        <SocialIcon
+          href="https://linkedin.com/in/manjeet-panghal"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.1 }}
+        >
+          <FaLinkedin />
+        </SocialIcon>
+      </SocialLinks>
     </AboutContainer>
   );
 };
