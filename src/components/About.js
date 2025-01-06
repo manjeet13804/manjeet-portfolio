@@ -449,7 +449,15 @@ const About = () => {
           <Stats>
             <StatItem variants={itemVariants}>
               <StatNumber>1+</StatNumber>
-              <StatLabel>Years Experience</StatLabel>
+              <StatLabel>Years Experience in Web Development</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>2+</StatNumber>
+              <StatLabel>Years Experience in Feild Engineer</StatLabel>
+            </StatItem>
+            <StatItem variants={itemVariants}>
+              <StatNumber>4 Month</StatNumber>
+              <StatLabel>Internship at Coding Ninjas</StatLabel>
             </StatItem>
             <StatItem variants={itemVariants}>
               <StatNumber>60+</StatNumber>
@@ -463,6 +471,7 @@ const About = () => {
               <StatNumber>Top Performer</StatNumber>
               <StatLabel>12th & Coding Ninjas Full Stack Course</StatLabel>
             </StatItem>
+           
           </Stats>
 
           <ButtonGroup variants={itemVariants}>
